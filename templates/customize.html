@@ -20,7 +20,7 @@ Customize
 
 <section class="cat_product_area section_padding">
     <div class="container">
-        <h1 class="cf-pg-title"><span>New XPS 13 Laptop (Silver)</span></h1>
+        <h1 class="cf-pg-title"><span>New {{ record[1] }} Laptop (Silver)</span></h1>
         <div data-bv-product-id="xps-13-9300-laptop" data-bv-show="rating_summary" class="cf-header-ratings-wrap"></div>
         <div class="row cf-hero-section">
             <div class="col cf-hero-imaging-section" id="cf_hero_image_wrap">
@@ -50,8 +50,8 @@ Customize
             <div class="col cf-hero-details">
                 <div class="cf-hero-price">
                     <div class="cf-dell-price">
-                        <div class="cf-price js-tooltip-trigger" js-is-clickable="" cf-title="Important Details" cf-message="<strong>Dell’s terms and conditions:</strong>&nbsp;apply to all sales available on request or at &quot;Terms and Conditions of Sale&quot; located at the bottom of our Website." data-price="6298.99">
-                            RM 6,298.99
+                        <div class="cf-price js-tooltip-trigger" js-is-clickable="" cf-title="Important Details" cf-message="<strong>Dell’s terms and conditions:</strong>&nbsp;apply to all sales available on request or at &quot;Terms and Conditions of Sale&quot; located at the bottom of our Website." data-price="{{ record[6] }}">
+                            {{ record[6] }}
                         </div>
                     </div>
                 </div>
@@ -106,7 +106,7 @@ Customize
                 </div>
 
                 <div class="cf-padding-bottom-10 cta_form">
-                    <form method="post" action="/en-my/work/shop/business-laptop-notebook-computers/new-xps-13-laptop-silver/spd/xps-13-9300-laptop/w5170131100myw10pro?cs=mybsd1&amp;handler=purchase">
+                    <form method="post" action="#">
                         <button class="btn btn-success full-width cf-atc-btn dellmetrics-browseconfig " data-testid="addToCartButton" data-save-label="Save Changes">
                             Buy Now
                         </button>
@@ -120,7 +120,7 @@ Customize
 <div style="margin: 0px 0px 0px 15%; background-color: aliceblue;" class="col col-md-9 col-sm-8" data-load-configuration="true" data-load-configuration-api="/csbapi/configurator/loadconfiguration/my/en/bsd/mybsd1/w5170131100myw10pro">
     <div class="cf-subhead-wrap">
         <h2 class="cf-prod-title-wrap">
-        Tech Specs &amp; Customization New XPS 13 Laptop (Silver)
+        Tech Specs &amp; Customization New {{ record[1] }} Laptop (Silver)
         </h2>
         <div class="row cf-page-validation">
         <div class="page-validation-wrap col"></div>
@@ -427,18 +427,21 @@ Customize
                             <h5 class="cf-option-group-title">Getting Started</h5>
                             <div>
                                 <div class="cf-options-wrap   ">
-                                    <form>
-                                        {% for abc in abc_list %}
+                                    <form method="post" action="/add_to_cart">
+                                        <input type="hidden" name="pid" value="{{ record[0] }}" />
+                                        {% for service in service_list %}
+
                                         <div class="cf-opt-wrap ">
                                             <div class="cf-input-wrap">
                                                 <div class="cf-input-container" for="G2KMUC4">
-                                                    <input type="radio" cf-price="" aria-label="3Y Carry-In Service" name="30" cf-has-quantity="" class="cfConfigInput" 
+                                                    <!--<input type="hidden" name="sid" value="{{ service[0] }}" />-->
+                                                    <input name="sid" value="{{ service[0] }}" type="radio"  cf-price="" aria-label="3Y Carry-In Service" name="30" cf-has-quantity="" class="cfConfigInput"
                                                         cf-id="G2KMUC4" id="--30-G2KMUC4" autocomplete="off" cf-detailsid="" cf-duration="0">
                                                     
                                                     <span class="block cf-opt-body">
                                                         
                                                         <div class="cf-opt-title">
-                                                            <label for="--30-G2KMUC4">3Y Carry-In Service</label>
+                                                            <label for="--30-G2KMUC4">{{ service[1] }}</label>
                                                             
                                                         </div>
                                                 
@@ -446,8 +449,8 @@ Customize
                                                 </div>
                                                 <div class="cf-opt-price-wrap">
                                                     <div class="cf-opt-price">
-                                                        
-                                                        <span>+ RM 166.00</span>
+
+                                                        <span >+ RM {{ service[3] }}</span>
                                                         <br>
                                                     </div>
                                                 </div>
@@ -455,7 +458,7 @@ Customize
                                             </div>
                                         </div>
                                         {% endfor %}
-                                        <button class="btn btn-success full-width cf-atc-btn dellmetrics-browseconfig cf-atc-dell-price" data-testid="addToCartButton" data-save-label="Save Changes">
+                                        <button type="submit" class="btn btn-success full-width cf-atc-btn dellmetrics-browseconfig cf-atc-dell-price" data-testid="addToCartButton" data-save-label="Save Changes">
                                             Add to cart
                                         </button>
                                     </form>

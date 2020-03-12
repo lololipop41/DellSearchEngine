@@ -9,13 +9,8 @@ class User:
     def sign_in(self, username, password):
         user_list = self.user.get_user()
         for customer in user_list:
-            if username == customer[1]:
-                if password == customer[2]:
-                    return True, "Sign In Successful!"
-                else:
-                    return False, "Password Incorrect!"
-            else:
-                return False, "Username Incorrect!"
+            if username == customer[1] and password == customer[2]:
+                return True, "Sign In Successful!"
 
     def sign_up(self, username, password):
         data = (username, password)

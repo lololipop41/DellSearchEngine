@@ -35,3 +35,21 @@ def get_default_service():
             cursor.close()
             conn.close()
             print("Connection Closed!")
+
+
+def get_single_service(sid):
+    try:
+        conn = connection.establish_connection()
+        cursor = conn.cursor()
+        cursor.execute("SELECT * FROM Service WHERE serviceid = ?", (sid,))
+        record = cursor.fetchall()
+        return record[0]
+    except Exception as err:
+        if conn:
+            print("Connection Failed!", err)
+    finally:
+        # closing database connection.
+        if conn:
+            cursor.close()
+            conn.close()
+            print("Connection Closed!")
