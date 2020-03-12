@@ -1,11 +1,10 @@
-
+from data import productDAO
 
 
 class Product:
-    def __init__(self, pid, prod_name, cpu_id, gpu_id, ram_id, storage_id):
-        self.pid = pid
-        self.prod_name = prod_name
-        self.cpu_id = cpu_id
-        self.gpu_id = gpu_id
-        self.ram_id = ram_id
-        self.storage_id = storage_id
+    def __init__(self):
+        self.product = productDAO
+
+    def view_product(self):
+        product_list = self.product.get_product()
+        return product_list

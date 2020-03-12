@@ -1,7 +1,10 @@
+from data import serviceDAO
 
 
+class Service:
+    def __init__(self):
+        self.service = serviceDAO
 
-class Services:
-    def __init__(self, sid, service_name):
-        self.sid = sid
-        self.service_name = service_name
+    def view_service(self):
+        service_list = self.service.get_service()
+        return service_list
