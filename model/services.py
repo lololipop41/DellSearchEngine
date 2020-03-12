@@ -12,3 +12,7 @@ class Service:
     def get_service(self):
         service = self.service.get_default_service()
         return service
+
+    def select_service(self, sid):
+        single_service = self.service.get_single_service(sid)
+        return single_service

@@ -112,7 +112,7 @@ Product
                         <div class="col-lg-12">
                             <div class="product_top_bar d-flex justify-content-between align-items-center">
                                 <div class="single_product_menu">
-                                    <p><span>2 </span> Found</p>
+                                    <p><span>{{ product_count }} </span> Found</p>
                                 </div>
                                 <div class="single_product_menu d-flex">
                                     <div class="input-group">
@@ -127,16 +127,19 @@ Product
                     </div>
 
                     <div class="row align-items-center latest_product_inner">
+                        {% for product in product_list %}
                         <div class="col-lg-4 col-sm-6">
                             <div class="single_product_item">
                                 <img src="{{ url_for('static', filename='img/product/dell/xps13.png')}}" alt="">
                                 <div class="single_product_text">
-                                    <h4>XPS 13</h4>
-                                    <h3>RM 4,299.00</h3>
-                                    <a href="/customize" class="add_cart">+ Buy Now<i class="ti-heart"></i></a>
+                                    <h4>{{ product[1] }}</h4>
+                                    <h3>{{ product[6] }}</h3>
+                                    <a href="{{ url_for('customize', product_id = product[0]) }}" class="add_cart">+ Buy Now<i class="ti-heart"></i></a>
                                 </div>
                             </div>
                         </div>
+                        {% endfor %}
+                        <!--
                         <div class="col-lg-4 col-sm-6">
                             <div class="single_product_item">
                                 <img src="{{ url_for('static', filename='img/product/dell/xps15.png')}}" alt="">
@@ -147,8 +150,9 @@ Product
                                 </div>
                             </div>
                         </div>
+                        -->
                         <div class="col-lg-12">
-                            <div class="pageination">
+                            <div class="pagination">
                                 <nav aria-label="Page navigation example">
                                     <ul class="pagination justify-content-center">
                                         <li class="page-item">
