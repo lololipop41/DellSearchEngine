@@ -8,3 +8,7 @@ class Service:
     def view_service(self):
         service_list = self.service.get_service()
         return service_list
+
+    def get_service(self):
+        service = self.service.get_default_service()
+        return service

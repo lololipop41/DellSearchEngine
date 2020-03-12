@@ -1,5 +1,5 @@
 from data import connection
-from datetime import date
+
 
 def add_order(data):
     try:

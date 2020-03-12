@@ -21,7 +21,6 @@ def get_user():
 
 def add_user(data):
     try:
-        print(data)
         conn = connection.establish_connection()
         cursor = conn.cursor()
         cursor.execute("INSERT INTO Customer (username, password) VALUES (?, ?)", data)
