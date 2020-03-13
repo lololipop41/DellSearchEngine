@@ -3,7 +3,21 @@
 Support
 {% endblock %}
 {% block content %}
-<section class="breadcrumb breadcrumb_bg">
+<!-- Modal -->
+<div class="modal fade" id="myModal" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-body">
+        <p>Your product is expiring!</p>
+        <p>Do you want to extend your warranty?</p>
+        <button><a href="{{ url_for('warranty', product_id = 1, service_id=1) }}">Yes</a> </button>
+        </br>
+      </div>
+    </div>
+  </div>
+</div>
+<section class="breadcrumb breadcrumb_bg3">
     <div class="container">
       <div class="row justify-content-center">
         <div class="col-lg-8">
@@ -17,4 +31,34 @@ Support
       </div>
     </div>
 </section>
+
+<div><h3 style="margin: 5%;
+  font-size: -webkit-xxx-large;">Product Bought</h3></div>
+
+<div class="row align-items-center latest_product_inner" style="margin: 10%;">
+    {% for prod_order in prod_order_list %}
+      <div class="col-md-4 col-sm-6">
+          <div class="single_product_item">
+              <img src="{{ url_for('static', filename='img/product/dell/xps13.png')}}" alt="">
+              <div class="single_product_text">
+                  <h4>{{ prod_order[1][0] }}</h4>
+                  <h3>{{ prod_order[0][4] }}</h3>
+                  <a href="{{ url_for('warranty', product_id = prod_order[1][0], service_id = prod_order[0][3] )}}" class="add_cart">! Repair Now</a>
+              </div>
+          </div>
+      </div>
+    {% endfor %}
+    <!--
+  <div class="col-md-4 col-sm-6">
+      <div class="single_product_item">
+        <img src="{{ url_for('static', filename='img/product/dell/xps15.png')}}" alt="">
+        <div class="single_product_text">
+            <h4>XPS 15</h4>
+            <h3>2010-03-22</h3>
+            <a href="/warranty" class="add_cart">! Repair Now</a>
+        </div>
+    </div>
+  </div>
+  -->
+</div>
 {% endblock %}
