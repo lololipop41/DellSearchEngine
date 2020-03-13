@@ -162,6 +162,9 @@
     }
   });
 
+    $(window).load(function(){
+        $('#myModal').modal('show');
+    });
 
 
   // niceSelect js code

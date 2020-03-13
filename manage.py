@@ -1,6 +1,7 @@
 # This is controller
 from flask import Flask, render_template, request
-from model import user, product, services
+from model import user, product, services, order
+from service import support_recommend, seek_support
 
 
 app = Flask(__name__)
@@ -64,9 +65,10 @@ def go_to_view_products():
 @app.route('/customize')
 def customize():
     pid = request.args['product_id']
+    most_useful = support_recommend.support_recommendation(pid)
     single_product = product.Product().select_product(pid)
     service_list = services.Service().view_service()
-    return render_template('customize.html', record=single_product, service_list=service_list)
+    return render_template('customize.html', record=single_product, service_list=service_list, most_useful=most_useful)
 
 
 pcart = []
@@ -103,37 +105,24 @@ def go_to_cart():
 
 @app.route('/support')
 def go_to_support():
-    return render_template('support.html')
+    uid = 1
+    order_list = order.Order().show_order(uid)
+    prod_list = []
+    for item in order_list:
+        prod_id = item[2]
+        prod_list.append(product.Product().select_product(prod_id))
+    prod_order_list = zip(order_list, prod_list)
+    return render_template('support.html', prod_order_list=prod_order_list)
 
-# @app.route('/index', methods=['POST'])
-# def login_to_index():
-#     username = request.form['username']
-#     password = request.form['password']
-#     customer = user.User()
-#     result = customer.sign_in(username, password)
-#     token = result[0]
-#     msg = result[1]
-#     if token[0]:
-#         print(msg)
-#         return render_template('index.html')
-#     else:
-#         print(msg)
-#         return render_template('login.html')
 
-# @app.route('/login', methods=['POST'])
-# def register_to_login():
-#     username = request.form['username']
-#     password = request.form['password']
-#     customer = user.User()
-#     result = customer.sign_up(username, password)
-#     token = result[0]
-#     msg = result[1]
-#     if token:
-#         print(msg)
-#         return render_template('login.html')
-#     else:
-#         print(msg)
-#         return render_template('register.html')
+@app.route('/warranty')
+def warranty():
+    pid = request.args['product_id']
+    sid = request.args['service_id']
+    seek_support.seeking_for_support(pid, sid)
+    single_product = product.Product().select_product(pid)
+    service_list = services.Service().view_service()
+    return render_template('warranty.html', record=single_product, service_list=service_list)
 
 
 if __name__ == '__main__':

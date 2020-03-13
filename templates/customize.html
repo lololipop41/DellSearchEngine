@@ -439,12 +439,17 @@ Customize
                                                         cf-id="G2KMUC4" id="--30-G2KMUC4" autocomplete="off" cf-detailsid="" cf-duration="0">
                                                     
                                                     <span class="block cf-opt-body">
-                                                        
+                                                        {% if most_useful == service[0] %}
+                                                        <div class="cf-opt-title">
+                                                            <label style="color: red;" for="--30-G2KMUC4">{{ service[1] }}</label>
+                                                            <p style="color: red;">BEST TO RECOMMEND</p>
+                                                        </div>
+                                                        {% else %}
                                                         <div class="cf-opt-title">
                                                             <label for="--30-G2KMUC4">{{ service[1] }}</label>
-                                                            
+
                                                         </div>
-                                                
+                                                        {% endif %}
                                                     </span>
                                                 </div>
                                                 <div class="cf-opt-price-wrap">
